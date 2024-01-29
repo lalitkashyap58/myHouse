@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage:{
+        'sign':"url('./assets/pexels-anna-shvets-4226269.jpg')",
+      }
+    },
   },
   plugins: [],
 }
