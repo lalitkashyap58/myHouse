@@ -25,7 +25,7 @@ app.get('/',(req,res)=>{
 app.use('/api/user',userRouter);//send to /api/user/test/ to user.route.js
 
 app.use('/api/auth',authRouter);//send to /api/auth/signup/ to auth.route.js
- 
+
 app.use((err,req,res,next)=>{
    
     const statusCode=err.statusCode||500;
