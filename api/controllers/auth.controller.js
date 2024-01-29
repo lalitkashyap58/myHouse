@@ -1,7 +1,7 @@
 import User from "../models/user.models.js";   
 import bcryptjs from "bcryptjs";
 
-export const signup=async(req,res)=>{
+export const signup=async(req,res,next)=>{
     const {username,email,password}=req.body;
     const hashedPassword=await bcryptjs.hash(password,12);
     
@@ -12,8 +12,7 @@ export const signup=async(req,res)=>{
     }
     catch(err){
      
-        res.status(500).json({message:"error occured in saving data of user",error:err});
-        
+          next(err);        
 
     }
    
