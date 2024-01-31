@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRouter from './routes/user.route.js';
-
+import cookieParser from 'cookie-parser';
 import authRouter from './routes/auth.route.js';
 dotenv.config();
 mongoose.connect(process.env.MONGO).then(()=>{
@@ -14,7 +14,7 @@ mongoose.connect(process.env.MONGO).then(()=>{
 const app=express();//instance of express is created 
 
 app.use(express.json());//to parse json data
-
+app.use(cookieParser());
 app.listen(3000,()=>{
     console.log(`server is runnning on ${3000}`)
 })
