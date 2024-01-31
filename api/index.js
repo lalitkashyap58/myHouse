@@ -12,6 +12,7 @@ mongoose.connect(process.env.MONGO).then(()=>{
     console.log(err);
 });
 
+const __dirname=path.resolve();
 const app=express();//instance of express is created 
 
 app.use(express.json());//to parse json data
@@ -27,6 +28,11 @@ app.use('/api/user',userRouter);//send to /api/user/test/ to user.route.js
 
 app.use('/api/auth',authRouter);//send to /api/auth/signup/ to auth.route.js
 app.use('/api/listing',listingRouter);
+
+app.use(express.static(path.join(__dirname,'/client/dist')));
+app.get('*',(req,res)=>{
+    res.sendFile(path.join(__dirname,'client','dist','index.html'));
+})
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
     const message = err.message || 'Internal Server Error';
