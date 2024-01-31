@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signInFailuer,signInStart,signInSuccess } from "../redux/user.Slice";
+import { signInFailure,signInStart,signInSuccess } from "../redux/user.Slice";
 import OAuth from "../components/OAuth";
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -29,14 +29,14 @@ export default function SignIn() {
       const data = await res.json();
       console.log(data);
       if (data.success === false) {
-  dispatch(signInFailuer(data.message));
+  dispatch(signInFailure(data.message));
       
         return;
       }
       dispatch(signInSuccess(data));
       navigate('/');
     } catch (error) {
-    dispatch(signInFailuer(error.message));
+    dispatch(signInFailure(error.message));
     
     }
   };
